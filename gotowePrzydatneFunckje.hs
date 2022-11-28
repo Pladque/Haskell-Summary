@@ -1,6 +1,8 @@
 -- zamiana listy na stringa
 
 -- zamiana boola na inta
+boolToInt True = 1
+boolToInt False = 0
 
 -- pre/in/postorderowe wyszukiwanie w drzewie
 

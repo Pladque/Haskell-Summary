@@ -15,6 +15,12 @@
 
 ---------------------------------------------------------------
 
+-- filter f list
+-- @desc: zwraca elementy listy ktore spelniaja warunek (f)
+-- @NOTE: f musi byc funckja a->Bool (gdzie a to typ w list)
+
+---------------------------------------------------------------
+
 -- list !! k
 -- @desc: returns elem  on k\th index
 -- @example: 
