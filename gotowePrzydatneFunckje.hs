@@ -1,5 +1,14 @@
 -- zamiana listy na stringa
+listtoStrHelper [] sep = ""
+listtoStrHelper (x:xs) sep = ((show x) ++ sep ++ (listtoStrHelper xs sep))
 
+--to remove last separator
+listtoStr list sep = do
+    let resultStr= (listtoStrHelper list sep)
+    take (length (resultStr) - (length sep)) resultStr
+    
+    
+    
 -- zamiana boola na inta
 boolToInt True = 1
 boolToInt False = 0
@@ -61,3 +70,30 @@ insertAt (x:xs) elem pos
 -- Sprawdzanie czy Palindrom
 isPalindrome w = w == reverse w
 
+-- maxy w podlistach
+-- liczby musza byc nieujemne
+sumlistMaxes xs = tail (foldl (go) ([-1]) xs)
+
+-- generowanie n liczb pierwszych
+primes = sieve [2..]  
+sieve (x : xs) = x : sieve [y | y <- xs, y `mod` x > 0] 
+
+-- split listy po separatorze
+splitList ::(Eq a) => [a] -> a -> [[a]]
+splitList [] sep = [[]]
+splitList xs sep = do
+    (takeWhile (\x -> (x /= sep)) xs)  : (splitList (tail (dropWhile (\x -> x /= sep) xs)) sep)
+
+
+splitListFixed xs sep = init (splitList (xs ++ [sep]) sep)
+
+
+
+-- usuwanie niechcianych znakow ze stringa
+--	(dziala tez dla list normlanie po usunieciu lini z deklaracja typu
+ugly = ['.', ',','!', '?']
+
+removeUglyCharacters :: String-> [Char] -> String
+removeUglyCharacters [] ugly = []
+removeUglyCharacters (x:xs) ugly | x `elem` ugly  = (removeUglyCharacters xs ugly)
+                            | otherwise = x:(removeUglyCharacters xs ugly)
